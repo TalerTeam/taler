@@ -18,9 +18,8 @@ uint256 CBlockHeader::GetHash() const
     return SerializeHash(*this);
 }
 
-uint256 CBlockHeader::GetPoWHash(int nHeight) const
+uint256 CBlockHeader::GetPoWHash(int nHeight, const Consensus::Params& params) const
 {
-	const Consensus::Params& params = Params().GetConsensus();
     uint256 thash;
 	
 	if (nHeight >= params.nLyra2ZHeight)

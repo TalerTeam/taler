@@ -40,12 +40,13 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  * transaction cannot be spent since it did not originally exist in the
  * database.
  *
- * CBlock(hash=000000000019d6, ver=1, hashPrevBlock=00000000000000, hashMerkleRoot=4a5e1e, nTime=1231006505, nBits=1d00ffff, nNonce=2083236893, vtx=1)
- *   CTransaction(hash=4a5e1e, ver=1, vin.size=1, vout.size=1, nLockTime=0)
- *     CTxIn(COutPoint(000000, -1), coinbase 04ffff001d0104455468652054696d65732030332f4a616e2f32303039204368616e63656c6c6f72206f6e206272696e6b206f66207365636f6e64206261696c6f757420666f722062616e6b73)
- *     CTxOut(nValue=50.00000000, scriptPubKey=0x5F1DF16B2B704C8A578D0B)
- *   vMerkleTree: 4a5e1e
+ * CBlock(hash=c079fd1ae86223e1522928776899d46e329da7919ca1e11be23643c67dd05d5f, ver=1, hashPrevBlock=00000000000000, hashMerkleRoot=985fae483ebbef9cde04a259282cb7465d52bf56824caf1a8132395e90488b12, nTime=1505338813, nBits=1e0ffff0, nNonce=725170, vtx=1)
+ *   CTransaction(hash=985fae483e, ver=1, vin.size=1, vout.size=1, nLockTime=0)
+ *     CTxIn(COutPoint(0000000000, 4294967295), coinbase 04ffff001d01043e54616c6572207065727368616a612062656c617275736b616a61206b727970746176616c697574612062792044656e6973204c2069205365726765204c20)
+ *     CScriptWitness()
+ *     CTxOut(nValue=50.00000000, scriptPubKey=4104f360606cf909ce34d4276ce40a)
  */
+ 
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
     const char* pszTimestamp = "Taler pershaja belaruskaja kryptavaliuta by Denis L i Serge L ";
@@ -97,10 +98,10 @@ public:
 
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000000001");
+        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000163368eec73cb5"); //30000
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0xa66084e01a48b0beebca6f372da266741fcb7dc0917ae60669ef4d9bb58033e4"); //8700
+        consensus.defaultAssumeValid = uint256S("0x0c14a678cb406be311c75938702e4ac567146d43bbd6d4f44e8d7a879a849424"); //30000
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -121,10 +122,10 @@ public:
 
         // Note that of those with the service bits flag, most only support a subset of possible options
         vSeeds.emplace_back("dnsseed.taler.site", true);
+		vSeeds.emplace_back("dnsseed.taler.host", true);
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,65);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
-        base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,50);
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,50);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,193);
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
@@ -139,16 +140,18 @@ public:
             {
                 {  1024, uint256S("0x8d769df2ac2cabb10038ba2a0ffd269e5cf93701c27256a27fb580a25106a170")},
                 {  2048, uint256S("0xc4838cab89b16915d813f424198a999af82b3dce2afed5d82cab1fe9df08d701")},
-				{  6602, uint256S("0xf225e2f57a5e90539a4d74b3bf1ed906a8146c64addff0f5279473fb6c5e9f0e")}
+				{  6602, uint256S("0xf225e2f57a5e90539a4d74b3bf1ed906a8146c64addff0f5279473fb6c5e9f0e")},
+				{ 20000, uint256S("0x82ad64f451be0375683efbdc7d94c1b970431b02a6a3e5057dd6cd0fb2022e70")},
+				{ 30000, uint256S("0x0c14a678cb406be311c75938702e4ac567146d43bbd6d4f44e8d7a879a849424")}
 			}
         };
 
         chainTxData = ChainTxData{
-            // Data as of block 603818ad827dc00a60ea01ad9734596834b4f4619f35f6c9f8ac75bb53cef171 (height 8795).
-      1510276848, // * UNIX timestamp of last known number of transactions
-           11952,       // * total number of transactions between genesis and that timestamp
+            // Data as of block 926976939a1a82e022260bb6b946559178d2fdb0a644f3cacc8b5521903f0bc3 (height 30710).
+      1517999238, // * UNIX timestamp of last known number of transactions
+           138875,       // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
-            0.00024204  // * estimated number of transactions per second after that timestamp // 11952/(1510276848-1510276848=4938035)
+           0.01535158811302571  // * estimated number of transactions per second after that timestamp // 11952/(1510276848-1510276848=4938035)
         };
     }
 };
@@ -206,7 +209,6 @@ public:
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,111);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
-        base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,58);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
@@ -281,7 +283,6 @@ public:
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,111);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
-        base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,58);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
