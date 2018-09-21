@@ -1,7 +1,7 @@
 Taler Core integration/staging tree
 =====================================
 
-[![Build Status](https://travis-ci.org/taler-project/taler.svg?branch=master)](https://travis-ci.org/taler-project/taler)
+[![Build Status](https://travis-ci.org/TalerTeam/taler.svg?branch=master)](https://travis-ci.org/TalerTeam/taler)
 
 https://taler.site
 
@@ -27,16 +27,11 @@ Development Process
 -------------------
 
 The `master` branch is regularly built and tested, but is not guaranteed to be
-completely stable. [Tags](https://github.com/taler-project/taler/tags) are created
+completely stable. [Tags](https://github.com/TalerTeam/taler/tags) are created
 regularly to indicate new official, stable release versions of Taler Core.
 
 The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
 
-The developer [mailing list](https://groups.google.com/forum/#!forum/taler-dev)
-should be used to discuss complicated or controversial changes before working
-on a patch set.
-
-Developer IRC can be found on Freenode at #taler-dev.
 
 Testing
 -------

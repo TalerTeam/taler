@@ -28,7 +28,7 @@ packages:
 - "python-setuptools"
 - "fonts-tuffy"
 remotes:
-- "url": "https://github.com/taler-project/taler.git"
+- "url": "https://github.com/TalerTeam/taler.git"
   "dir": "taler"
 files:
 - "MacOSX10.11.sdk.tar.gz"
