@@ -525,7 +525,7 @@ std::string HelpMessage(HelpMessageMode mode)
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/taler-project/taler>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/TalerTeam/taler>"; 
     const std::string URL_WEBSITE = "<https://taler.site>";
 
     return CopyrightHolders(strprintf(_("Copyright (C) %i-%i"), 2016, COPYRIGHT_YEAR) + " ") + "\n" +
